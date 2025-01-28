@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+.wrap{
+border:2px solid black;
+text-align: center;
+padding-bottom: 300px;   
+}
+.form-baslik{
+display: flex;
+justify-content: space-between;
+background-color:#CE2829;
+ margin-bottom: 50px;
+line-height: 3.1; 
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%; /* Tam genişlik */
+height: 200px; /* Yükseklik isteğe bağlı */
+}
+h1 {
+ font-size: 78px;
+line-height: 1.1;
+  }
+.nav-baslik{
+ color: white;
+display: flex;
+margin-top: 150px;
+margin-left: -665px;
+font-size: 20px;
+}
+a {
+ font-weight: 800;
+ color:white;
+text-decoration: inherit;
+}
+a:hover {
+ opacity: 50%;
+font-weight: bold;
+}
+  .main-pizza{
+    font-size: 30px;
+    padding-right: 150px;
+}
+ .pizza-price{
+ font-size: 50px;
+ font-weight: bold;
+}
+
+.about-pizza{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+   }
+.form-div{
+width: 532px;
+margin-left: 600px;
+text-align: left;
+}
+.boyut-hamur{
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}  
+.pizza-boyut{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+.boyut-sec{
+    font-weight: bold;
+    font-size: 20px;
+}
+.hamur-sec{
+    display: flex;
+    flex-direction: column;
+}
+.hamur-baslik{
+    font-weight: bold;
+    font-size: 20px;
+}
+.ekMalzeme-baslik{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.malzeme-bilgi{
+    margin-bottom: 20px;
+}
+.malzemeler {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px;
+    column-gap:  100px; 
+  }
+  .kullanici-title{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .kullanici-div{
+    padding-top: 20px;
+  }
+  .isim-alani {
+    border: 1px solid #ccc; /* Sınır kalınlığı, stili ve rengi */
+    border-radius: 5px; /* Yuvarlak köşeler */
+    padding: 10px; /* İçerikle sınır arasında boşluk */
+    resize: none;
+    width: 100%;
+  }
+  .siparis-name{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .siparis-notu {
+    border: 1px solid #ccc; /* Sınır kalınlığı, stili ve rengi */
+    border-radius: 5px; /* Yuvarlak köşeler */
+    padding: 10px; /* İçerikle sınır arasında boşluk */
+    resize: none;
+    width: 100%;
+  }
+  .horizontal-line {
+    width: 100%; 
+    height: 2px; 
+    background-color: black; 
+    margin: 10px 0; 
+  }
+  .div-siparis{
+    margin-top: 10%;
+    display: flex;
+  flex-direction: column;
+  }
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #FDC913;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #646cff;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  .siparis-alani{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .ödeme-alani{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid gray;
+  }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './SiparisForm.css';
 function SiparisForm() {
   const [pizzaBoyutu, setPizzaBoyutu] = useState('Orta');
   const [hamurTuru, setHamurTuru] = useState('Kalın');
@@ -7,9 +7,12 @@ function SiparisForm() {
   const [siparisNotu, setSiparisNotu] = useState('');
   const [siparisSayisi, setSiparisSayisi] = useState(1);
   const [toplamFiyat, setToplamFiyat] = useState(85.50);
+  const [isim, setIsim] = useState('');
+  const [hataMesaji, setHataMesaji] = useState('');
 
   const ekMalzemeFiyati = 5;
   const pizzaFiyati = 85.50;
+  const ekMalzemelerinToplamFiyati = ekMalzemeler.length * ekMalzemeFiyati;
 
   useEffect(() => {
     const yeniToplam = pizzaFiyati * siparisSayisi + ekMalzemeler.length * ekMalzemeFiyati;
@@ -24,29 +27,44 @@ function SiparisForm() {
       setEkMalzemeler(ekMalzemeler.filter(malzeme => malzeme !== value));
     }
   };
+  const handleIsimDegisimi = (e) => {
+    setIsim(e.target.value);
+    if (e.target.value.length < 3) {
+      setHataMesaji('Lütfen en az 3 karakter giriniz.');
+    } else {
+      setHataMesaji('');
+    }
+  };
 
   return (
-    <div>
-      <header>
+    <div className='wrap'>
+      <header className="form-baslik">
         <h1>Teknolojik Yemekler</h1>
-        <nav>
+        <div>
+        <nav className="nav-baslik">
           <a href="#">Ana Sayfa </a>
-          <a href="#"> Sipariş Oluştur</a>
+          <p className="tire"> - </p>
+          <a href="#"> Sipariş Oluştur </a>
         </nav>
-      </header>
-
-      <h2>Pizza Absolute Acı Pizza</h2>
-      <p>Fiyat: 85.50 ₺</p> 
-      <p> Puan: 4.9 (200)</p>
+        </div>
+        </header>
+    <div className="form-div">
+      <h2 className="main-pizza">Position Absolute Acı Pizza</h2>
+      <div className='about-pizza'>
+      <p className='pizza-price'>85.50 ₺</p> 
+      <p className='pizza-point'> 4.9 </p>
+      <p className='pizza-comment'>(200)</p>
+      </div>
       <p>Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış,
          daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,
          düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir.
          Küçük bir pizzaya bazen pizzetta denir</p>
-
+      
       <form>
-        <div>
+        <div className='boyut-hamur'> 
+        <div className='pizza-boyut'>
+          <p className='boyut-sec'>Boyut Seç *</p>
           <label>
-            Boyut Seç:
             <input
               type="radio"
               value="Küçük"
@@ -75,16 +93,17 @@ function SiparisForm() {
           </label>
         </div>
 
-        <div>
-          <label>Hamur Seç:</label>
+        <div className='hamur-sec'>
+          <p className='hamur-baslik'>Hamur Seç *</p>
           <select value={hamurTuru} onChange={(e) => setHamurTuru(e.target.value)}>
             <option value="İnce">İnce Hamur</option>
             <option value="Kalın">Kalın Hamur</option>
           </select>
         </div>
-
-        <div>
-          <h3>Ek Malzemeler (En fazla 10 malzeme seçebilirsiniz. +5 ₺)</h3>
+        </div>
+          <h3 className='ekMalzeme-baslik'>Ek Malzemeler</h3>
+          <p className='malzeme-bilgi'>En fazla 10 malzeme seçebilirsiniz. +5 ₺</p>
+        <div className='malzemeler'>
           <label>
             <input
               type="checkbox"
@@ -178,20 +197,20 @@ function SiparisForm() {
           <label>
             <input
               type="checkbox"
-              value="Kanada-Jambonu"
-              checked={ekMalzemeler.includes('Kanada-Jambonu')}
-              onChange={handleEkMalzemeDegisimi}
-            />
-            Kanada Jambonu
-          </label>
-          <label>
-            <input
-              type="checkbox"
               value="Domates"
               checked={ekMalzemeler.includes('Domates')}
               onChange={handleEkMalzemeDegisimi}
             />
             Domates
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="Kanada-Jambonu"
+              checked={ekMalzemeler.includes('Kanada-Jambonu')}
+              onChange={handleEkMalzemeDegisimi}
+            />
+            Kanada Jambonu
           </label>
           <label>
             <input
@@ -211,14 +230,26 @@ function SiparisForm() {
             />
             Pastırma
           </label>
-
         </div>
-
+        <div className='kullanici-div'>
+          <p className='kullanici-title'>Adınız Soyadınız</p>
+          <label>
+            <input className='isim-alani'
+              type="text"
+              value={isim}
+              onChange={handleIsimDegisimi}
+            />
+            {hataMesaji && <p className="hata-mesaji">{hataMesaji}</p>}
+          </label>
+        </div>
+        <div className='div-siparis'>
+          <p className='siparis-name'>Sipariş Notu</p>
         <label>
-          Sipariş Notu:
-          <textarea value={siparisNotu} onChange={(e) => setSiparisNotu(e.target.value)} />
+          <textarea className='siparis-notu' value={siparisNotu} onChange={(e) => setSiparisNotu(e.target.value)} />
         </label>
-
+        </div>
+        <div className="horizontal-line"></div>
+        <div className='siparis-alani'>
         <label>
           Sipariş Sayısı:
           <input
@@ -227,10 +258,14 @@ function SiparisForm() {
             onChange={(e) => setSiparisSayisi(Number(e.target.value))}
           />
         </label>
-
-        <p>Toplam Fiyat: {toplamFiyat} ₺</p>
+        <div className='ödeme-alani'>
+        <p>Seçimler {ekMalzemelerinToplamFiyati } ₺</p>
+        <p>Toplam  {toplamFiyat} ₺</p>
         <button type="submit">Siparişi Tamamla</button>
+        </div>
+        </div>
       </form>
+    </div>
     </div>
   );
 }
