@@ -160,3 +160,26 @@ text-align: left;
     gap: 10px;
     border: 2px solid gray;
   }
+  .order_type{
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    background-color: unset !important;
+    border-top:  1px solid #d3d3d3 !important;
+    border-bottom :  1px solid #d3d3d3 !important;
+  }
+  .order_type:focus-visible{
+    outline: none !important;
+  }
+  .button_change{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: #FDC913;
+    font-weight: 800;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+  }

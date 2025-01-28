@@ -35,6 +35,17 @@ function SiparisForm() {
       setHataMesaji('');
     }
   };
+  const siparisArttir = () => {
+    setSiparisSayisi(siparisSayisi + 1);
+  }
+
+  const siparisAzalt = () => {
+    if(siparisSayisi > 1){
+      setSiparisSayisi(siparisSayisi - 1);
+    }else{
+      window.alert('Sipariş 0dan az olamaz');
+    }
+  }
 
   return (
     <div className='wrap'>
@@ -250,14 +261,31 @@ function SiparisForm() {
         </div>
         <div className="horizontal-line"></div>
         <div className='siparis-alani'>
-        <label>
-          Sipariş Sayısı:
-          <input
-            type="number"
-            value={siparisSayisi}
-            onChange={(e) => setSiparisSayisi(Number(e.target.value))}
-          />
-        </label>
+        <div>
+            <label htmlFor="" style={{display: 'block'}}></label>
+            <div style={{
+              display: 'flex'
+            }}>
+              <span className='button_change' style={{
+                borderTopLeftRadius: '3px',
+                borderBottomLeftRadius: '3px'
+              }}
+              onClick={siparisAzalt}>
+                -
+              </span>
+              
+                <input type="text" className='order_type' value={siparisSayisi} onChange={(e) => setSiparisSayisi(e.target.value)} />
+              <span className='button_change'
+               style={{
+                borderTopRightRadius: '3px',
+                borderBottomRightRadius: '3px',
+               }}
+               onClick={siparisArttir}
+               >
+                +
+              </span>
+            </div>
+          </div>
         <div className='ödeme-alani'>
         <p>Seçimler {ekMalzemelerinToplamFiyati } ₺</p>
         <p>Toplam  {toplamFiyat} ₺</p>
