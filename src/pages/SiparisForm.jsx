@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './SiparisForm.css';
+import axios from "axios";
+
 function SiparisForm() {
   const [pizzaBoyutu, setPizzaBoyutu] = useState('Orta');
   const [hamurTuru, setHamurTuru] = useState('Kalın');
@@ -18,6 +20,37 @@ function SiparisForm() {
     const yeniToplam = pizzaFiyati * siparisSayisi + ekMalzemeler.length * ekMalzemeFiyati;
     setToplamFiyat(yeniToplam);
   }, [ekMalzemeler, siparisSayisi]);
+
+  const submitButton = () => {
+    if (ekMalzemeler.length < 4) {
+        alert("Ek Malzeme en az 4 adet olmalıdır.");
+    } else if (ekMalzemeler.length > 10) {
+        alert("Ek Malzeme en fazla 10 adet olmalıdır.");
+    } else if (isim === "") {
+        alert("Ad Soyad Boş Bırakılamaz.");
+    } else {
+        const postData = {
+            isim: isim,
+            boyut: pizzaBoyutu,
+            hamur: hamurTuru,
+            malzemeler: ekMalzemeler,
+            siparisNotu: siparisNotu,
+        };
+
+        console.log(postData);
+
+        try {
+          const response =  axios.post(
+            "https://reqres.in/api/pizza",
+            postData
+          );
+          console.log("Order Summary:", response.data);
+        } catch (error) {
+          console.error("Error submitting order:", error);
+        }
+    }
+}; 
+  
 
   const handleEkMalzemeDegisimi = (event) => {
     const { value, checked } = event.target;
@@ -81,6 +114,7 @@ function SiparisForm() {
               value="Küçük"
               checked={pizzaBoyutu === 'Küçük'}
               onChange={(e) => setPizzaBoyutu(e.target.value)}
+              required
             />
             Küçük
           </label>
@@ -106,7 +140,7 @@ function SiparisForm() {
 
         <div className='hamur-sec'>
           <p className='hamur-baslik'>Hamur Seç *</p>
-          <select value={hamurTuru} onChange={(e) => setHamurTuru(e.target.value)}>
+          <select value={hamurTuru} required onChange={(e) => setHamurTuru(e.target.value)}>
             <option value="İnce">İnce Hamur</option>
             <option value="Kalın">Kalın Hamur</option>
           </select>
@@ -249,6 +283,7 @@ function SiparisForm() {
               type="text"
               value={isim}
               onChange={handleIsimDegisimi}
+              required
             />
             {hataMesaji && <p className="hata-mesaji">{hataMesaji}</p>}
           </label>
@@ -274,7 +309,7 @@ function SiparisForm() {
                 -
               </span>
               
-                <input type="text" className='order_type' value={siparisSayisi} onChange={(e) => setSiparisSayisi(e.target.value)} />
+                <input type="text" disabled className='order_type' value={siparisSayisi} onChange={(e) => setSiparisSayisi(e.target.value)} />
               <span className='button_change'
                style={{
                 borderTopRightRadius: '3px',
@@ -289,7 +324,7 @@ function SiparisForm() {
         <div className='ödeme-alani'>
         <p>Seçimler {ekMalzemelerinToplamFiyati } ₺</p>
         <p>Toplam  {toplamFiyat} ₺</p>
-        <button type="submit">Siparişi Tamamla</button>
+        <button type="button" onClick={submitButton}> Siparişi Tamamla</button>
         </div>
         </div>
       </form>
